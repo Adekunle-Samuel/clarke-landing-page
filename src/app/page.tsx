@@ -192,6 +192,16 @@ export default function Home() {
           
           {/* Navigation Right Side */}
           <nav className="flex gap-4 sm:gap-[29px] items-center relative">
+            {/* Email Button */}
+            <a 
+              href="mailto:sam@useclarke.app"
+              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-[#6b6b6b] text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-[#6E4D2E]/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/30"
+              aria-label="Send email to sam@useclarke.app"
+            >
+              <span className="relative z-10">Contact Sam</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+            </a>
+            
             <button 
               onClick={() => setShowPartnerForm(!showPartnerForm)}
               className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-[#6b6b6b] text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-[#6E4D2E]/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
