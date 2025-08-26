@@ -29,3 +29,4 @@ export const getWaitlistCount = async () => {
   return count || 0
 }
 
+

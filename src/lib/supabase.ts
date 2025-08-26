@@ -24,3 +24,4 @@ export interface PartnerEntry {
   created_at?: string
 }
 
+
