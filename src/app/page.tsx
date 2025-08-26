@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { createClient } from '@supabase/supabase-js'
+//import { supabase } from '@/lib/supabase'
+import { addToWaitlist, addPartner } from '@/lib/supabase-utils'
 import Script from 'next/script'
+//import SupabaseStatus from '@/components/SupabaseStatus'
+import Logo from '@/components/Logo'
 
 // Type definitions for FinisherHeader
 declare global {
@@ -23,11 +25,7 @@ declare global {
   }
 }
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+// Supabase client is now imported from @/lib/supabase
 
 // Skip link component for accessibility
 const SkipLink = () => (
@@ -124,12 +122,7 @@ export default function Home() {
     setMessage('')
 
     try {
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([{ name, email }])
-
-      if (error) throw error
-
+      await addToWaitlist({ name, email })
       setMessage('Thank you! You\'ve been added to our priority list.')
       setName('')
       setEmail('')
@@ -147,14 +140,7 @@ export default function Home() {
     setPartnerMessage('')
 
     try {
-      const { error } = await supabase
-        .from('partners')
-        .insert([
-          { brand_name: brandName, email: brandEmail }
-        ])
-
-      if (error) throw error
-
+      await addPartner({ brand_name: brandName, email: brandEmail })
       setPartnerMessage('Thank you! We\'ll be in touch soon.')
       setBrandName('')
       setBrandEmail('')
@@ -181,13 +167,7 @@ export default function Home() {
         <header className="relative z-30 flex items-center justify-between px-4 sm:px-8 lg:px-20 pt-8 lg:pt-[47px] max-w-[1400px] mx-auto">
           {/* Logo */}
           <div className="h-[30px] w-[60px] sm:h-[37.284px] sm:w-[70.476px] relative">
-            <Image 
-              src="/images/clarke-logo.png" 
-              alt="Clarke" 
-              fill
-              className="object-contain"
-              priority
-            />
+            <Logo useNextImage={false} />
           </div>
           
           {/* Navigation Right Side */}
@@ -421,6 +401,9 @@ export default function Home() {
             </div>
           </div>
         </main>
+        
+        
+      
       </div>
     </>
   )
