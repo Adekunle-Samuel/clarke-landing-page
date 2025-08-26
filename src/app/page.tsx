@@ -51,6 +51,10 @@ export default function Home() {
   const [partnerMessage, setPartnerMessage] = useState('')
   const [showPartnerForm, setShowPartnerForm] = useState(false)
 
+  // Success popup state
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false)
+  const [showPartnerSuccessPopup, setShowPartnerSuccessPopup] = useState(false)
+
   // Initialize Finisher Header after component mounts
   useEffect(() => {
     const initFinisherHeader = () => {
@@ -123,9 +127,10 @@ export default function Home() {
 
     try {
       await addToWaitlist({ name, email })
-      setMessage('Thank you! You\'ve been added to our priority list.')
       setName('')
       setEmail('')
+      setShowForm(false)
+      setShowSuccessPopup(true)
     } catch (error) {
       setMessage('Something went wrong. Please try again.')
       console.error('Error:', error)
@@ -141,10 +146,10 @@ export default function Home() {
 
     try {
       await addPartner({ brand_name: brandName, email: brandEmail })
-      setPartnerMessage('Thank you! We\'ll be in touch soon.')
       setBrandName('')
       setBrandEmail('')
       setShowPartnerForm(false)
+      setShowPartnerSuccessPopup(true)
     } catch (error) {
       setPartnerMessage('Something went wrong. Please try again.')
       console.error('Error:', error)
@@ -401,9 +406,105 @@ export default function Home() {
             </div>
           </div>
         </main>
+
+        {/* Success Popup for Waitlist */}
+        {showSuccessPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+              onClick={() => setShowSuccessPopup(false)}
+            />
+            
+            {/* Modal Content */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-gray-200 shadow-2xl text-center">
+              {/* Close Button */}
+              <button
+                onClick={() => setShowSuccessPopup(false)}
+                className="absolute top-4 right-4 text-[#6b6b6b] hover:text-[#2ecc71] transition-colors p-2"
+                aria-label="Close success message"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+              
+              {/* Success Icon */}
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/10 rounded-full flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              </div>
+              
+              {/* Success Message */}
+              <h2 className="font-serif text-[#6e4d2e] text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
+                Welcome to Clarke!
+              </h2>
+              
+              <p className="font-sans font-normal text-[#6b6b6b] text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
+                Thank you for joining our priority list! We'll notify you as soon as Clarke is ready to transform your shopping experience.
+              </p>
+              
+              <button
+                onClick={() => setShowSuccessPopup(false)}
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
+              >
+                <span className="relative z-10">Continue</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Success Popup for Partners */}
+        {showPartnerSuccessPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+              onClick={() => setShowPartnerSuccessPopup(false)}
+            />
+            
+            {/* Modal Content */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-gray-200 shadow-2xl text-center">
+              {/* Close Button */}
+              <button
+                onClick={() => setShowPartnerSuccessPopup(false)}
+                className="absolute top-4 right-4 text-[#6b6b6b] hover:text-[#2ecc71] transition-colors p-2"
+                aria-label="Close success message"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+              
+              {/* Success Icon */}
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/10 rounded-full flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              </div>
+              
+              {/* Success Message */}
+              <h2 className="font-serif text-[#6e4d2e] text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
+                Partnership Request Received!
+              </h2>
+              
+              <p className="font-sans font-normal text-[#6b6b6b] text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
+                Thank you for your interest in partnering with Clarke! Our team will review your request and get back to you within 2-3 business days.
+              </p>
+              
+              <button
+                onClick={() => setShowPartnerSuccessPopup(false)}
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
+              >
+                <span className="relative z-10">Continue</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              </button>
+            </div>
+          </div>
+        )}
         
-        
-      
       </div>
     </>
   )
