@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
         from: 'Sam <sam@useclarke.app>',
         to: [email],
         subject: emailTemplate.subject,
-        html: emailTemplate.html,
+        text: emailTemplate.text,
       })
 
       if (error) {
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
         from: 'Sam <sam@useclarke.app>',
         to: ['sam@useclarke.app'],
         subject: emailTemplate.subject,
-        html: emailTemplate.html,
+        text: emailTemplate.text,
       })
 
       if (error) {
