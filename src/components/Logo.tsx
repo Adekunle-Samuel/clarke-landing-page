@@ -27,6 +27,3 @@ export default function Logo({ className = '', useNextImage = true }: LogoProps)
     />
   )
 }
-
-
-

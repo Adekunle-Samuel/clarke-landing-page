@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Check if environment variables are set
     const hasApiKey = !!process.env.RESEND_API_KEY
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     })
   } catch (error) {
     return NextResponse.json(
-      { error: 'Test failed', details: error.message },
+      { error: 'Test failed', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     return NextResponse.json(
-      { error: 'Test failed', details: error.message },
+      { error: 'Test failed', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
