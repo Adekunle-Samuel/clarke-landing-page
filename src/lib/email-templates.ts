@@ -1,33 +1,31 @@
 export const getWaitlistWelcomeEmail = (name: string, waitlistUrl: string = 'https://useclarke.app') => ({
   subject: 'Finally, shopping that feels personal 🙌',
-  text: `Hi ${name}!
+  text: `Hiiii,
 
-Thank you for joining the waitlist.
+Thank you for being here with us.
 
-When we set out to build Clarke, it was simple: fashion should work for real people, not just standard sizes. Basically, every body matters.
+When I started shopping online, I realized how broken online fashion is. Sizes are inconsistent, there's no real guidance, and so many of us just don't see ourselves represented.
 
-That's why Clarke is designed to be your personal shopper, curating pieces that actually fit your size, body, and style.
+If you experienced any of this like myself and my co-founder did, you get it;
 
-We're building for you if…
-- You hesitate to shop online because sizes are all over the place.
-- You're searching for unique, stylish, and quality pieces but don't know where to start.
-- You don't see your body represented when you shop and want a personal experience.
+You've probably hesitated buying clothes online because sizing guides vary so wildly between brands.
 
-With Clarke, we're prioritizing what matters most when you find an item—fit, style, and how it makes you feel. It's all about you.
+Maybe you're looking for quality pieces that match your style but don't know where to start.
 
-In the meantime, you can reply this email if you have any question. If you think someone could benefit from Clarke, share the waitlist with them.
+Or you're tired of shopping experiences that don't feel like they're meant for you.
 
-Share the waitlist: ${waitlistUrl}
+That's what Clarke is about - making fashion shopping work for real people. Every body should matter in fashion shopping. You deserve to look good and we want to help.
 
-Or forward this email to a friend who needs this.
+I'd love to hear what your biggest challenge is with online shopping. Just reply to this email - I read every response.
 
-With love,
+Since you are now here with us, we are in this together. So, If you know someone else who might relate to this, feel free to forward this along. They might want to stay in touch with us here: ${waitlistUrl}
+
+Best,
+
 Sam
 Co-Founder, Clarke
 
----
-You're receiving this because you joined the Clarke waitlist.
-If this wasn't you, you can safely ignore this email.`,
+P.S. You signed up to hear about Clarke. If this wasn't you, no worries - just ignore this email.`,
 })
 
 export const getPartnerNotificationEmail = (brandName: string, email: string) => ({
