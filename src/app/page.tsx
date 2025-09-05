@@ -126,7 +126,28 @@ export default function Home() {
     setMessage('')
 
     try {
+      // Add to Supabase waitlist
       await addToWaitlist({ name, email })
+      
+      // Send welcome email
+      try {
+        const emailResponse = await fetch('/api/send-waitlist-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, type: 'waitlist' }),
+        })
+
+        if (!emailResponse.ok) {
+          console.error('Failed to send email')
+          // Don't throw error here - the user is still added to waitlist
+        }
+      } catch (emailError) {
+        console.error('Email sending error:', emailError)
+        // Continue with success flow even if email fails
+      }
+
       setName('')
       setEmail('')
       setShowForm(false)
@@ -145,7 +166,28 @@ export default function Home() {
     setPartnerMessage('')
 
     try {
+      // Add to Supabase partners
       await addPartner({ brand_name: brandName, email: brandEmail })
+      
+      // Send notification email
+      try {
+        const emailResponse = await fetch('/api/send-waitlist-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: brandName, email: brandEmail, type: 'partner' }),
+        })
+
+        if (!emailResponse.ok) {
+          console.error('Failed to send partner notification email')
+          // Don't throw error here - the partner is still added to database
+        }
+      } catch (emailError) {
+        console.error('Partner email sending error:', emailError)
+        // Continue with success flow even if email fails
+      }
+
       setBrandName('')
       setBrandEmail('')
       setShowPartnerForm(false)
