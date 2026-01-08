@@ -1,30 +1,19 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import { Inter } from 'next/font/google'
+import { Alegreya, Figtree } from 'next/font/google'
 import './globals.css'
 
-const robotoSerif = localFont({
-  src: [
-    {
-      path: '../lib/Roboto_Serif/RobotoSerif-VariableFont_GRAD,opsz,wdth,wght.ttf',
-      weight: '100 900',
-      style: 'normal',
-    },
-    {
-      path: '../lib/Roboto_Serif/RobotoSerif-Italic-VariableFont_GRAD,opsz,wdth,wght.ttf',
-      weight: '100 900',
-      style: 'italic',
-    },
-  ],
-  variable: '--font-roboto-serif',
+const alegreya = Alegreya({
+  subsets: ['latin'],
+  variable: '--font-alegreya',
   display: 'swap',
   fallback: ['Georgia', 'serif'],
 })
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-figtree',
   display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
 })
 
 export const metadata: Metadata = {
@@ -63,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Clarke - Shopping that fits you',
-    description: 'Shopping that fits you — not the other way around.',
+    title: 'Clarke - Built for Fashion Brands',
+    description: 'Clarke helps fashion brands reduce size-based returns',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -94,9 +83,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html 
-      lang="en" 
-      className={`${robotoSerif.variable} ${inter.variable}`}
+    <html
+      lang="en"
+      className={`${alegreya.variable} ${figtree.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -105,7 +94,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${robotoSerif.className} antialiased min-h-screen`}>
+      <body className={`${figtree.className} antialiased min-h-screen`}>
         {children}
       </body>
     </html>

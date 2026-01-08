@@ -77,15 +77,15 @@ export default function Home() {
             }
           },
           "colors": {
-            "background": "#e6f7e6",
+            "background": "#000000",
             "particles": [
-              "#f9fae4",
-              "#e6f7e6",
-              "#d896c2",
-              "#D99C63"
+              "#1a1a1a",
+              "#0a0a0a",
+              "#262626",
+              "#333333"
             ]
           },
-          "blending": "lighten",
+          "blending": "overlay",
           "opacity": {
             "center": 0.6,
             "edge": 0
@@ -106,19 +106,6 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Close partner form when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (showPartnerForm && !target.closest('nav')) {
-        setShowPartnerForm(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [showPartnerForm]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -204,7 +191,7 @@ export default function Home() {
     <>
       <Script src="/finisher-header.es5.min.js" strategy="afterInteractive" />
 
-      <div className="relative min-h-screen overflow-x-hidden" style={{ backgroundColor: '#e6f7e6' }}>
+      <div className="relative min-h-screen overflow-x-hidden bg-black text-white">
         {/* Finisher Header Background */}
         <div className="header finisher-header" style={{ width: '100vw', height: '100%', position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />
         
@@ -220,75 +207,14 @@ export default function Home() {
           {/* Navigation Right Side */}
           <nav className="flex gap-4 sm:gap-[29px] items-center relative">
             {/* Email Button */}
-            <a 
+            <a
               href="mailto:sam@useclarke.app"
-              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-[#F9FAE4] text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-[#6E4D2E] backdrop-blur-sm border border-[#6E4D2E]/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/30"
+              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-white text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
               aria-label="Send email to sam@useclarke.app"
             >
               <span className="relative z-10">Contact Us</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
             </a>
-            
-            <button 
-              onClick={() => setShowPartnerForm(!showPartnerForm)}
-              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-[#6b6b6b] text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-[#6E4D2E]/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
-              aria-label="Contact us for brand partnerships"
-            >
-              <span className="relative z-10">Partner with us</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-            </button>
-            
-            {/* Partner Form Dropdown */}
-            {showPartnerForm && (
-              <div className="absolute top-full right-0 mt-2 w-80 bg-white/20 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl z-40 animate-in slide-in-from-top-2 duration-300">
-                <form onSubmit={handlePartnerSubmit} className="flex flex-col gap-4">
-                  <h3 className="font-serif text-[#6e4d2e] text-sm tracking-[-0.3px] leading-[1.2] font-medium mb-2">
-                    PARTNER WITH CLARKE
-                  </h3>
-                  
-                  <div className="flex flex-col gap-3">
-                    <input
-                      type="text"
-                      placeholder="Brand Name"
-                      value={brandName}
-                      onChange={(e) => setBrandName(e.target.value)}
-                      className="bg-white/80 backdrop-blur-sm py-2 outline-none border-0 border border-[#A3A3A3] focus:border-[#2ecc71] focus:bg-white/20 rounded-lg font-sans text-[#6b6b6b] text-sm tracking-[-0.2px] px-3 transition-all duration-300 placeholder:text-[#A3A3A3] placeholder:font-normal w-full shadow-sm"
-                      required
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      value={brandEmail}
-                      onChange={(e) => setBrandEmail(e.target.value)}
-                      className="bg-white/80 backdrop-blur-sm py-2 outline-none border-0 border border-[#A3A3A3] focus:border-[#2ecc71] focus:bg-white/20 rounded-lg font-sans text-[#6b6b6b] text-sm tracking-[-0.2px] px-3 transition-all duration-300 placeholder:text-[#A3A3A3] placeholder:font-normal w-full shadow-sm"
-                      required
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isPartnerSubmitting}
-                    className="relative overflow-hidden rounded-xl px-6 py-3 font-sans font-medium text-[#6b6b6b] text-sm tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group mt-2"
-                  >
-                    <span className="relative z-10">{isPartnerSubmitting ? 'Submitting...' : 'Submit'}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                  </button>
-
-                  {partnerMessage && (
-                    <p 
-                      className={`text-xs ${partnerMessage.includes('Thank you') ? 'text-[#2ecc71]' : 'text-red-500'}`}
-                      role="alert"
-                      aria-live="polite"
-                    >
-                      {partnerMessage}
-                    </p>
-                  )}
-                </form>
-              </div>
-            )}
           </nav>
         </header>
 
@@ -297,28 +223,35 @@ export default function Home() {
           <div className="flex flex-col items-center text-center mt-16 lg:mt-[80px]">
             {/* Badge */}
             <div className="glass-effect-subtle flex items-center justify-center px-3 py-2 w-fit rounded-lg mb-8">
-              <span className="font-sans font-medium text-[13px] tracking-[1px] leading-[1.2] text-[#6b6b6b]">
-               AI-POWERED SHOPPING FOR YOU
+              <span className="font-sans font-medium text-[13px] tracking-[1px] leading-[1.2] text-gray-300">
+               BUILT FOR FASHION BRANDS
               </span>
             </div>
             
-            {/* Main Heading - Full Width */}
-            <h1 className="font-serif text-[#6e4d2e] text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-8">
-              Remove the guesswork,<br className="hidden sm:block"/> shop your size with certainty
+            {/*
+            <h1 className="font-serif text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-8">
+              Built for Brands. Powered by Conversational AI
             </h1>
+            */}
+            <h1 className="font-serif text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-4">
+              Built for Brands.
+            </h1>
+            <h2 className="font-serif italic text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-8">
+              Powered by Conversational AI
+            </h2>
             
             {/* Subtitle */}
-            <p className="font-sans font-normal text-[#6b6b6b] text-lg sm:text-xl lg:text-[20px] tracking-[-0.6px] leading-[1.35] max-w-[800px] mb-12">
-              Find clothes you'll actually love in your size. Clarke filters thousands of brands to show only what fits your size and matches your vibe
+            <p className="font-sans font-normal text-gray-200 text-lg sm:text-xl lg:text-[20px] tracking-[-0.6px] leading-[1.35] max-w-[800px] mb-12">
+            Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse reducing bracketing and returns
             </p>
             
-            {/* Toggle Button */}
+            {/* Request Demo - Secondary CTA */}
             <button
               onClick={() => setShowForm(!showForm)}
-              className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-[#6E4D2E]/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 mb-8 group"
+              className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black mb-8 group hover:bg-white/20"
             >
-              <span className="relative z-10">{showForm ? 'Hide Form' : 'Join the Priority List'}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              <span className="relative z-10">{showForm ? 'Hide Form' : 'Request Demo'}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
             </button>
             
             {/* Form Overlay - Conditionally Rendered */}
@@ -331,11 +264,11 @@ export default function Home() {
                 />
                 
                 {/* Modal Content */}
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[600px] relative z-10 animate-in zoom-in-95 duration-300 border border-gray-200 shadow-2xl">
+                <div className="bg-white/30 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[600px] relative z-10 animate-in zoom-in-95 duration-300 border border-white/40 shadow-2xl">
                   {/* Close Button */}
                   <button
                     onClick={() => setShowForm(false)}
-                    className="absolute top-4 right-4 text-[#6b6b6b] hover:text-[#2ecc71] transition-colors p-2"
+                    className="absolute top-4 right-4 text-white hover:text-[#2ecc71] transition-colors p-2"
                     aria-label="Close form"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -346,7 +279,7 @@ export default function Home() {
                   <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:gap-12">
                     {/* Form Header */}
                     <div className="text-center mb-4">
-                      <h2 className="font-serif text-[#6e4d2e] text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium">
+                      <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium">
                         Get Early Access
                       </h2>
                     </div>
@@ -362,7 +295,7 @@ export default function Home() {
                           placeholder="First Name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="bg-white/80 backdrop-blur-sm py-3 outline-none border-0 border border-[#A3A3A3] focus:border-[#2ecc71] focus:bg-white/20 rounded-lg font-sans text-[#6b6b6b] text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-[#A3A3A3] placeholder:font-normal w-full shadow-sm"
+                          className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
                           required
                           aria-describedby="name-error"
                         />
@@ -378,7 +311,7 @@ export default function Home() {
                           placeholder="Enter your email address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="bg-white/80 backdrop-blur-sm py-3 outline-none border-0 border border-[#A3A3A3] focus:border-[#2ecc71] focus:bg-white/20 rounded-lg font-sans text-[#6b6b6b] text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-[#A3A3A3] placeholder:font-normal w-full shadow-sm"
+                          className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
                           required
                           aria-describedby="email-error"
                         />
@@ -388,7 +321,7 @@ export default function Home() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
+                      className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
                     >
                       <span className="relative z-10">{isSubmitting ? 'Joining...' : 'Submit'}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
@@ -410,43 +343,45 @@ export default function Home() {
           </div>
 
           {/* Features Section */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 lg:gap-[40px] mt-16 lg:mt-[80px] pb-20">
+          {/*<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 lg:gap-[40px] mt-16 lg:mt-[80px] pb-20">
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3 className="font-serif font-medium text-[#6b6b6b] text-regular text-[16px] sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
-                Start with you
+              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+                Built for fashion brands.
               </h3>
-              <p className="font-sans font-normal text-[#6b6b6b] text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
-                Tell us what you want, we find only items that can fit your size, mood, budget and fit
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
+                Built with Shopify standards, Clarke is built to integrate with your existing Shopify store.
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3  className="font-serif font-medium text-[#6b6b6b] text-regular text-[16px] sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
-                Not in your size?
+              <h3  className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+                A shopping assistant that understands your customers
               </h3>
-              <p className="font-sans font-normal text-[#6b6b6b] text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
-                Why show it in the first place? We only show you what truly comes in your size.
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
+              Clarke combines your product data with each shopper's body context in real-time conversations.
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3 className="font-serif font-medium text-[#6b6b6b] text-regular text-[16px] sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
-                Discover new pieces
+              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+                Your shoppers get a personal fit expert. You get fewer returns.
               </h3>
-              <p className="font-sans font-normal text-[#6b6b6b] text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
-                Shop indie brands, mainstreet brands all in one place. Unique pieces from 1000+ brands in one place
+              <p className="font-sans font-normal text-gray-200 text-sm lg:text-[14px] leading-[1.5]">
+               Clarke answers "Will this fit me?" in real-time by understanding each shopper's body and your brand's sizing
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3 className="font-serif font-medium text-[#6b6b6b] text-regular text-[16px] sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
-                Shop the yeses
+                <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+              Reduce Size-Based Returns
               </h3>
-              <p className="font-sans font-normal text-[#6b6b6b] text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
-                Clarke shows you a clean feed of ready-to-shop picks - no charts, no guesswork.
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] leading-[1.5]">
+                Reduce fit-related returns by helping shoppers get it right the first time.
               </p>
             </div>
           </div>
+          */}
+
         </main>
 
         {/* Success Popup for Waitlist */}
@@ -459,11 +394,11 @@ export default function Home() {
             />
             
             {/* Modal Content */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-gray-200 shadow-2xl text-center">
+            <div className="bg-white/30 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-white/40 shadow-2xl text-center">
               {/* Close Button */}
               <button
                 onClick={() => setShowSuccessPopup(false)}
-                className="absolute top-4 right-4 text-[#6b6b6b] hover:text-[#2ecc71] transition-colors p-2"
+                className="absolute top-4 right-4 text-white hover:text-[#2ecc71] transition-colors p-2"
                 aria-label="Close success message"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -472,24 +407,24 @@ export default function Home() {
               </button>
               
               {/* Success Icon */}
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/10 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/20 rounded-full flex items-center justify-center">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" strokeWidth="2.5">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
               </div>
               
               {/* Success Message */}
-              <h2 className="font-serif text-[#6e4d2e] text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
+              <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
                 Welcome to Clarke!
               </h2>
               
-              <p className="font-sans font-normal text-[#6b6b6b] text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
-                Thank you for joining our priority list! We'll notify you as soon as Clarke is ready to transform your shopping experience.
+              <p className="font-sans font-normal text-gray-200 text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
+                Thank you for your interest in Clarke! A representative will be in touch shortly to discuss your partnership.
               </p>
               
               <button
                 onClick={() => setShowSuccessPopup(false)}
-                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
               >
                 <span className="relative z-10">Continue</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
@@ -508,11 +443,11 @@ export default function Home() {
             />
             
             {/* Modal Content */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-gray-200 shadow-2xl text-center">
+            <div className="bg-white/30 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[500px] relative z-10 animate-in zoom-in-95 duration-300 border border-white/40 shadow-2xl text-center">
               {/* Close Button */}
               <button
                 onClick={() => setShowPartnerSuccessPopup(false)}
-                className="absolute top-4 right-4 text-[#6b6b6b] hover:text-[#2ecc71] transition-colors p-2"
+                className="absolute top-4 right-4 text-white hover:text-[#2ecc71] transition-colors p-2"
                 aria-label="Close success message"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -521,24 +456,24 @@ export default function Home() {
               </button>
               
               {/* Success Icon */}
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/10 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#2ecc71]/20 rounded-full flex items-center justify-center">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" strokeWidth="2.5">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
               </div>
               
               {/* Success Message */}
-              <h2 className="font-serif text-[#6e4d2e] text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
+              <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium mb-4">
                 Partnership Request Received!
               </h2>
               
-              <p className="font-sans font-normal text-[#6b6b6b] text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
+              <p className="font-sans font-normal text-gray-200 text-base lg:text-lg tracking-[-0.3px] leading-[1.4] mb-8">
                 Thank you for your interest in partnering with Clarke! Our team will review your request and get back to you within 2-3 business days.
               </p>
               
               <button
                 onClick={() => setShowPartnerSuccessPopup(false)}
-                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#6b6b6b] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group"
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
               >
                 <span className="relative z-10">Continue</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
