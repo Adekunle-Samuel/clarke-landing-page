@@ -186,7 +186,7 @@ export default function Home() {
         {/* Header Navigation */}
         <header className="relative z-30 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-20 pt-4 sm:pt-6 md:pt-8 lg:pt-[47px]">
           {/* Logo */}
-          <div className="h-[24px] w-[48px] sm:h-[30px] sm:w-[60px] md:h-[37.284px] md:w-[70.476px] relative">
+          <div className="h-[24px] w-[48px] sm:h-[48px] sm:w-[80px] md:h-[56px] md:w-[100px] relative">
             <Logo useNextImage={false} />
           </div>
           
@@ -195,7 +195,7 @@ export default function Home() {
             {/* Email Button */}
             <a
               href="mailto:sam@useclarke.app"
-              className="relative overflow-hidden rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 font-sans font-normal text-white text-[10px] sm:text-xs-custom lg:text-sm tracking-[-0.3px] sm:tracking-[-0.4px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
+              className="relative overflow-hidden rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 font-sans font-normal text-white text-sm sm:text-base lg:text-sm tracking-[-0.3px] sm:tracking-[-0.4px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
               aria-label="Send email to sam@useclarke.app"
             >
               <span className="relative z-10">Contact Us</span>
@@ -329,7 +329,7 @@ export default function Home() {
         )}
 
         {/* Bottom Left Section - Hero Content */}
-        <div className="fixed bottom-0 left-0 z-20 px-4 sm:px-6 md:px-8 lg:px-20 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full sm:w-auto">
+        <div className="fixed bottom-8 left-0 z-20 px-4 sm:px-6 md:px-8 lg:px-20 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full sm:w-auto">
           <div className="flex flex-col items-start text-left">
             {/* Badge */}
             <div className="glass-effect-subtle flex items-center justify-center px-2.5 sm:px-3 py-1.5 sm:py-2 w-fit rounded-lg mb-4 sm:mb-6">
@@ -348,7 +348,7 @@ export default function Home() {
             </h2>
             
             {/* Subtitle */}
-            <p className="font-sans font-normal text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl tracking-[-0.4px] sm:tracking-[-0.5px] lg:tracking-[-0.6px] leading-[1.35] mb-4 sm:mb-6 max-w-[600px]">
+            <p className="font-sans font-normal text-gray-200 text-base sm:text-base md:text-lg lg:text-xl tracking-[-0.4px] sm:tracking-[-0.5px] lg:tracking-[-0.6px] leading-[1.35] mb-4 sm:mb-6 max-w-[600px]">
               Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse reducing bracketing and returns
             </p>
             
