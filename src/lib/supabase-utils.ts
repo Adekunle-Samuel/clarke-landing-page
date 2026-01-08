@@ -2,7 +2,7 @@ import { supabase, WaitlistEntry, PartnerEntry } from './supabase'
 
 export const addToWaitlist = async (entry: Omit<WaitlistEntry, 'id' | 'created_at'>) => {
   const { data, error } = await supabase
-    .from('waitlist_signups')
+    .from('waitlist')
     .insert([entry])
     .select()
 
@@ -12,7 +12,7 @@ export const addToWaitlist = async (entry: Omit<WaitlistEntry, 'id' | 'created_a
 
 export const addPartner = async (entry: Omit<PartnerEntry, 'id' | 'created_at'>) => {
   const { data, error } = await supabase
-    .from('brand_name')
+    .from('partners')
     .insert([entry])
     .select()
 
@@ -22,7 +22,7 @@ export const addPartner = async (entry: Omit<PartnerEntry, 'id' | 'created_at'>)
 
 export const getWaitlistCount = async () => {
   const { count, error } = await supabase
-    .from('waitlist_signups')
+    .from('waitlist')
     .select('*', { count: 'exact', head: true })
 
   if (error) throw error
