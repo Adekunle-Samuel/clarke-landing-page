@@ -7,6 +7,7 @@ import Script from 'next/script'
 //import SupabaseStatus from '@/components/SupabaseStatus'
 import Logo from '@/components/Logo'
 import { Input } from '@/components/ui/input'
+import LottieAnimation from '@/components/LottieAnimation'
 
 // Type definitions for FinisherHeader
 declare global {
@@ -329,28 +330,33 @@ export default function Home() {
         )}
 
         {/* Bottom Left Section - Hero Content */}
-        <div className="fixed bottom-8 left-0 z-20 px-4 sm:px-6 md:px-8 lg:px-20 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full sm:w-auto">
+        <div className="fixed bottom-8 left-0 z-20 px-4 sm:px-6 md:px-8 lg:px-20 pt-40 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full sm:w-auto lg:max-w-[50%]">
           <div className="flex flex-col items-start text-left">
+            {/* Mobile Animation - Above Badge */}
+            <div className="w-48 sm:w-56 md:w-64 h-56 sm:h-56 md:h-56 mb-20 sm:mb-40 md:mb-52 lg:hidden">
+              <LottieAnimation className="w-full h-full" />
+            </div>
+
             {/* Badge */}
             <div className="glass-effect-subtle flex items-center justify-center px-2.5 sm:px-3 py-1.5 sm:py-2 w-fit rounded-lg mb-4 sm:mb-6">
               <span className="font-sans font-medium text-xs sm:text-sm-custom tracking-[0.5px] sm:tracking-[1px] leading-[1.2] text-gray-300">
                BUILT FOR SHOPIFY STORES
               </span>
             </div>
-            
+
             {/* Hero Heading */}
             <h1 className="font-serif text-white text-3xl sm:text-4xl md:text-5xl lg:text-display tracking-[-1.5px] sm:tracking-[-2px] lg:tracking-[-2.5px] leading-[1.1] font-medium mb-1 sm:mb-2">
               Stop Losing Sales to Sizing Questions
               <br />
               <span className="block mt-1 italic">Clarke Answers Instantly, 24/7</span>
             </h1>
-          
-            
+
+
             {/* Subtitle */}
             <p className="font-sans font-normal text-gray-200 text-base sm:text-base md:text-lg lg:text-xl tracking-[-0.4px] sm:tracking-[-0.5px] lg:tracking-[-0.6px] leading-[1.35] mb-4 sm:mb-6 max-w-[600px]">
               Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse. Reducing bracketing and size-basedreturns.
             </p>
-            
+
             {/* Request Demo - CTA */}
             <button
               onClick={() => setShowForm(!showForm)}
@@ -359,6 +365,13 @@ export default function Home() {
               <span className="relative z-10">{showForm ? 'Hide Form' : 'Request Demo'}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
             </button>
+          </div>
+        </div>
+
+        {/* Desktop Animation - Right Side */}
+        <div className="hidden lg:block fixed bottom-8 right-0 z-20 px-20 pb-12 w-auto max-w-[45%]">
+          <div className="w-[500px] h-[500px] xl:w-[600px] xl:h-[600px]">
+            <LottieAnimation className="w-full h-full" />
           </div>
         </div>
 
