@@ -12,7 +12,7 @@ export const addToWaitlist = async (entry: Omit<WaitlistEntry, 'id' | 'created_a
 
 export const addPartner = async (entry: Omit<PartnerEntry, 'id' | 'created_at'>) => {
   const { data, error } = await supabase
-    .from('partners')
+    .from('brand_name')
     .insert([entry])
     .select()
 

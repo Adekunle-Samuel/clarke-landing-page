@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 //import { supabase } from '@/lib/supabase'
-import { addToWaitlist } from '@/lib/supabase-utils'
+import { addPartner } from '@/lib/supabase-utils'
 import Script from 'next/script'
 //import SupabaseStatus from '@/components/SupabaseStatus'
 import Logo from '@/components/Logo'
@@ -39,15 +39,11 @@ const SkipLink = () => (
 )
 
 export default function Home() {
-  const [name, setName] = useState('')
+  const [brandName, setBrandName] = useState('')
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
   const [showForm, setShowForm] = useState(false)
-  
-  // Partner form state (reserved for future use)
-  // const [brandName, setBrandName] = useState('')
-  // const [brandEmail, setBrandEmail] = useState('')
 
   // Success popup state
   const [showSuccessPopup, setShowSuccessPopup] = useState(false)
@@ -111,22 +107,23 @@ export default function Home() {
     setMessage('')
 
     try {
-      // Add to Supabase waitlist
-      await addToWaitlist({ name, email })
+      // Add to Supabase brand_name table
+      await addPartner({ brand_name: brandName, email })
 
-      setName('')
+      setBrandName('')
       setEmail('')
       setShowForm(false)
       setShowSuccessPopup(true)
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error:', error)
       // Provide more specific error messages
-      if (error?.message?.includes('duplicate key')) {
-        setMessage('This email is already on the waitlist.')
-      } else if (error?.message?.includes('violates row-level security')) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      if (errorMessage.includes('duplicate key')) {
+        setMessage('This email has already been submitted.')
+      } else if (errorMessage.includes('violates row-level security')) {
         setMessage('Permission denied. Please check your Supabase configuration.')
-      } else if (error?.message) {
-        setMessage(`Error: ${error.message}`)
+      } else if (errorMessage) {
+        setMessage(`Error: ${errorMessage}`)
       } else {
         setMessage('Something went wrong. Please try again.')
       }
@@ -283,14 +280,14 @@ export default function Home() {
                 <div className="flex flex-col gap-4 sm:gap-6">
                   <div className="flex flex-col gap-2">
                     <Input
-                      id="name"
+                      id="brandName"
                       type="text"
                       placeholder="What is your Brand Name?"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={brandName}
+                      onChange={(e) => setBrandName(e.target.value)}
                       className="bg-white/90 backdrop-blur-sm border-white/50 focus-visible:border-[#2ecc71] focus-visible:bg-white text-gray-900 placeholder:text-gray-500 font-sans text-sm sm:text-base tracking-[-0.2px] py-2.5 sm:py-3 px-3 sm:px-4 shadow-sm"
                       required
-                      aria-describedby="name-error"
+                      aria-describedby="brandName-error"
                     />
                   </div>
 
