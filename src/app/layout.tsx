@@ -37,23 +37,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://clarke.com',
-    title: 'Clarke - Shopping that fits you',
-    description: 'Shopping that fits you — not the other way around.',
+    url: 'https://www.useclarke.com',
+    title: 'Clarke - Shopping Intelligence for Brands',
+    description: 'Answer fit-based questions in real-time with Clarke, your personal shopping assistant.',
     siteName: 'Clarke',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Clarke - Shopping that fits you',
+        alt: 'Clarke - Shopping Intelligence for Brands',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Clarke - Built for Fashion Brands',
-    description: 'Clarke helps fashion brands reduce size-based returns',
+    description: 'Clarke helps brands reduce size-based returns',
     images: ['/og-image.jpg'],
   },
   robots: {
