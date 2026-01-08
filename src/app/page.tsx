@@ -349,7 +349,7 @@ export default function Home() {
             
             {/* Subtitle */}
             <p className="font-sans font-normal text-gray-200 text-base sm:text-base md:text-lg lg:text-xl tracking-[-0.4px] sm:tracking-[-0.5px] lg:tracking-[-0.6px] leading-[1.35] mb-4 sm:mb-6 max-w-[600px]">
-              Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse reducing bracketing and returns
+              Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse. Reducing bracketing and returns.
             </p>
             
             {/* Request Demo - CTA */}
