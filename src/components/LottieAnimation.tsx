@@ -47,7 +47,7 @@ export default function LottieAnimation({ className = '' }: LottieAnimationProps
   useEffect(() => {
     if (!isVisible || animationData) return
 
-    fetch('/animation-optimized.json')
+    fetch('/animation-final.json')
       .then(response => response.json())
       .then(data => setAnimationData(data))
       .catch(error => console.error('Error loading animation:', error))
