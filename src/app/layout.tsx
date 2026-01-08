@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Alegreya, Figtree } from 'next/font/google'
 import './globals.css'
 
@@ -67,15 +67,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
   verification: {
     google: 'your-google-verification-code',
   },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.useclarke.com'),
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 }
 
 export default function RootLayout({
