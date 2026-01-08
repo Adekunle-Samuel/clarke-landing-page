@@ -198,7 +198,7 @@ export default function Home() {
         <SkipLink />
         
         {/* Header Navigation */}
-        <header className="relative z-30 flex items-center justify-between px-4 sm:px-8 lg:px-20 pt-8 lg:pt-[47px] max-w-[1400px] mx-auto">
+        <header className="relative z-30 flex items-center justify-between px-4 sm:px-8 lg:px-20 pt-8 lg:pt-[47px]">
           {/* Logo */}
           <div className="h-[30px] w-[60px] sm:h-[37.284px] sm:w-[70.476px] relative">
             <Logo useNextImage={false} />
@@ -209,7 +209,7 @@ export default function Home() {
             {/* Email Button */}
             <a
               href="mailto:sam@useclarke.app"
-              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-white text-[11px] lg:text-[14px] tracking-[-0.4px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
+              className="relative overflow-hidden rounded-xl px-4 lg:px-6 py-2 lg:py-3 font-sans font-normal text-white text-xs-custom lg:text-sm tracking-[-0.4px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
               aria-label="Send email to sam@useclarke.app"
             >
               <span className="relative z-10">Contact Us</span>
@@ -219,163 +219,40 @@ export default function Home() {
         </header>
 
         <main id="main-content" className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-20">
-          {/* Hero Section */}
-          <div className="flex flex-col items-center text-center mt-16 lg:mt-[80px]">
-            {/* Badge */}
-            <div className="glass-effect-subtle flex items-center justify-center px-3 py-2 w-fit rounded-lg mb-8">
-              <span className="font-sans font-medium text-[13px] tracking-[1px] leading-[1.2] text-gray-300">
-               BUILT FOR FASHION BRANDS
-              </span>
-            </div>
-            
-            {/*
-            <h1 className="font-serif text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-8">
-              Built for Brands. Powered by Conversational AI
-            </h1>
-            */}
-            <h1 className="font-serif text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-4">
-              Built for Brands.
-            </h1>
-            <h2 className="font-serif italic text-white text-4xl sm:text-5xl lg:text-[64px] tracking-[-2.5px] leading-[1.1] font-medium max-w-[1200px] mb-8">
-              Powered by Conversational AI
-            </h2>
-            
-            {/* Subtitle */}
-            <p className="font-sans font-normal text-gray-200 text-lg sm:text-xl lg:text-[20px] tracking-[-0.6px] leading-[1.35] max-w-[800px] mb-12">
-            Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse reducing bracketing and returns
-            </p>
-            
-            {/* Request Demo - Secondary CTA */}
-            <button
-              onClick={() => setShowForm(!showForm)}
-              className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black mb-8 group hover:bg-white/20"
-            >
-              <span className="relative z-10">{showForm ? 'Hide Form' : 'Request Demo'}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-            </button>
-            
-            {/* Form Overlay - Conditionally Rendered */}
-            {showForm && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                {/* Backdrop */}
-                <div 
-                  className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-                  onClick={() => setShowForm(false)}
-                />
-                
-                {/* Modal Content */}
-                <div className="bg-white/30 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[600px] relative z-10 animate-in zoom-in-95 duration-300 border border-white/40 shadow-2xl">
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setShowForm(false)}
-                    className="absolute top-4 right-4 text-white hover:text-[#2ecc71] transition-colors p-2"
-                    aria-label="Close form"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
-                  </button>
-                  
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:gap-12">
-                    {/* Form Header */}
-                    <div className="text-center mb-4">
-                      <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium">
-                        Get Early Access
-                      </h2>
-                    </div>
-                    
-                    <div className="flex flex-col gap-6">
-                      <div className="flex flex-col gap-3">
-                        {/* <label htmlFor="name" className="font-sans font-medium text-[#374151] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.4]">
-                          Name
-                        </label> */}
-                        <input
-                          id="name"
-                          type="text"
-                          placeholder="First Name"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
-                          required
-                          aria-describedby="name-error"
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-3">
-                       {/* <label htmlFor="email" className="font-sans font-medium text-[#374151] text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.4]">
-                          Email Address
-                        </label> */}
-                        <input
-                          id="email"
-                          type="email"
-                          placeholder="Enter your email address"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
-                          required
-                          aria-describedby="email-error"
-                        />
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
-                    >
-                      <span className="relative z-10">{isSubmitting ? 'Joining...' : 'Submit'}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                    </button>
-
-                    {message && (
-                      <p 
-                        className={`text-sm ${message.includes('Thank you') ? 'text-[#2ecc71]' : 'text-red-500'}`}
-                        role="alert"
-                        aria-live="polite"
-                      >
-                        {message}
-                      </p>
-                    )}
-                  </form>
-                </div>
-              </div>
-            )}
-          </div>
-
           {/* Features Section */}
           {/*<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 lg:gap-[40px] mt-16 lg:mt-[80px] pb-20">
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-lg tracking-[-0.3px] leading-[1.5]">
                 Built for fashion brands.
               </h3>
-              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-sm tracking-[-0.5px] leading-[1.5]">
                 Built with Shopify standards, Clarke is built to integrate with your existing Shopify store.
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3  className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+              <h3  className="font-sans font-medium text-white text-regular text-base sm:text-lg tracking-[-0.3px] leading-[1.5]">
                 A shopping assistant that understands your customers
               </h3>
-              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] tracking-[-0.5px] leading-[1.5]">
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-sm tracking-[-0.5px] leading-[1.5]">
               Clarke combines your product data with each shopper's body context in real-time conversations.
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+              <h3 className="font-sans font-medium text-white text-regular text-base sm:text-lg tracking-[-0.3px] leading-[1.5]">
                 Your shoppers get a personal fit expert. You get fewer returns.
               </h3>
-              <p className="font-sans font-normal text-gray-200 text-sm lg:text-[14px] leading-[1.5]">
+              <p className="font-sans font-normal text-gray-200 text-sm lg:text-sm leading-[1.5]">
                Clarke answers "Will this fit me?" in real-time by understanding each shopper's body and your brand's sizing
               </p>
             </div>
 
             <div className="glass-effect rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-5">
-                <h3 className="font-sans font-medium text-white text-regular text-base sm:text-[18px] tracking-[-0.3px] leading-[1.5]">
+                <h3 className="font-sans font-medium text-white text-regular text-base sm:text-lg tracking-[-0.3px] leading-[1.5]">
               Reduce Size-Based Returns
               </h3>
-              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-[14px] leading-[1.5]">
+              <p className="font-sans font-normal text-gray-200 text-xs sm:text-sm lg:text-sm leading-[1.5]">
                 Reduce fit-related returns by helping shoppers get it right the first time.
               </p>
             </div>
@@ -383,6 +260,122 @@ export default function Home() {
           */}
 
         </main>
+
+        {/* Form Overlay - Conditionally Rendered */}
+        {showForm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+              onClick={() => setShowForm(false)}
+            />
+            
+            {/* Modal Content */}
+            <div className="bg-white/30 backdrop-blur-lg rounded-2xl p-8 lg:p-[60px] w-full max-w-[600px] relative z-10 animate-in zoom-in-95 duration-300 border border-white/40 shadow-2xl">
+              {/* Close Button */}
+              <button
+                onClick={() => setShowForm(false)}
+                className="absolute top-4 right-4 text-white hover:text-[#2ecc71] transition-colors p-2"
+                aria-label="Close form"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+              
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:gap-12">
+                {/* Form Header */}
+                <div className="text-center mb-4">
+                  <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium">
+                    Get Early Access
+                  </h2>
+                </div>
+                
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-3">
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="First Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
+                      required
+                      aria-describedby="name-error"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
+                      required
+                      aria-describedby="email-error"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
+                >
+                  <span className="relative z-10">{isSubmitting ? 'Joining...' : 'Submit'}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                </button>
+
+                {message && (
+                  <p 
+                    className={`text-sm ${message.includes('Thank you') ? 'text-[#2ecc71]' : 'text-red-500'}`}
+                    role="alert"
+                    aria-live="polite"
+                  >
+                    {message}
+                  </p>
+                )}
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Bottom Left Section - Hero Content */}
+        <div className="fixed bottom-0 left-0 z-20 px-4 sm:px-8 lg:px-20 pb-8 lg:pb-12">
+          <div className="flex flex-col items-start text-left">
+            {/* Badge */}
+            <div className="glass-effect-subtle flex items-center justify-center px-3 py-2 w-fit rounded-lg mb-6">
+              <span className="font-sans font-medium text-sm-custom tracking-[1px] leading-[1.2] text-gray-300">
+               BUILT FOR SHOPIFY STORES
+              </span>
+            </div>
+            
+            {/* Hero Heading */}
+            <h1 className="font-serif text-white text-6xl sm:text-5xl lg:text-display tracking-[-2.5px] leading-[1.1] font-medium mb-4">
+              Built for Brands,
+            </h1>
+            
+            <h2 className="font-serif italic text-white text-6xl sm:text-5xl lg:text-display lg:tracking-[-2.5px] leading-[1.1] font-medium mb-4">
+              Powered by Conversational AI
+            </h2>
+            
+            {/* Subtitle */}
+            <p className="font-sans font-normal text-gray-200 text-lg sm:text-xl lg:text-xl tracking-[-0.6px] leading-[1.35] mb-6 max-w-[600px]">
+              Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse reducing bracketing and returns
+            </p>
+            
+            {/* Request Demo - CTA */}
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-[#572F76] text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-[#DBA7FC] backdrop-blur-sm border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black group hover:bg-white/20"
+            >
+              <span className="relative z-10">{showForm ? 'Hide Form' : 'Request Demo'}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+            </button>
+          </div>
+        </div>
 
         {/* Success Popup for Waitlist */}
         {showSuccessPopup && (
@@ -424,7 +417,7 @@ export default function Home() {
               
               <button
                 onClick={() => setShowSuccessPopup(false)}
-                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
               >
                 <span className="relative z-10">Continue</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
@@ -473,7 +466,7 @@ export default function Home() {
               
               <button
                 onClick={() => setShowPartnerSuccessPopup(false)}
-                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-[16px] tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
+                className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
               >
                 <span className="relative z-10">Continue</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>

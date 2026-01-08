@@ -152,6 +152,14 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontSize: {
+        'micro': ['0.5rem', { lineHeight: '0.625rem' }],      // 8px / 10px
+        'caption': ['0.625rem', { lineHeight: '0.75rem' }],   // 10px / 12px
+        'xs-custom': ['0.6875rem', { lineHeight: '1rem' }],  // 11px
+        'sm-custom': ['0.8125rem', { lineHeight: '1.125rem' }], // 13px
+        'hero': ['1.75rem', { lineHeight: '2.25rem' }],       // 28px / 36px
+        'display': ['4rem', { lineHeight: '1.1' }],           // 64px
+      },
     },
   },
   plugins: [],

@@ -221,21 +221,8 @@
     }
   }
 
-  /* Custom font sizes */
-  .text-hero {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  .text-caption {
-    font-size: 10px;
-    line-height: 12px;
-  }
-
-  .text-micro {
-    font-size: 8px;
-    line-height: 10px;
-  }
+  /* Custom font sizes - now using Tailwind classes */
+  /* Use text-hero, text-caption, text-micro from Tailwind config */
 
   /* Glassy hover animation from left */
   .glass-hover {
