@@ -339,17 +339,16 @@ export default function Home() {
             </div>
             
             {/* Hero Heading */}
-            <h1 className="font-serif text-white text-3xl sm:text-4xl md:text-5xl lg:text-display tracking-[-1.5px] sm:tracking-[-2px] lg:tracking-[-2.5px] leading-[1.1] font-medium mb-3 sm:mb-4">
-              Built for Brands,
+            <h1 className="font-serif text-white text-3xl sm:text-4xl md:text-5xl lg:text-display tracking-[-1.5px] sm:tracking-[-2px] lg:tracking-[-2.5px] leading-[1.1] font-medium mb-1 sm:mb-2">
+              Stop Losing Sales to Sizing Questions
+              <br />
+              <span className="block mt-1 italic">Clarke Answers Instantly, 24/7</span>
             </h1>
-            
-            <h2 className="font-serif italic text-white text-3xl sm:text-4xl md:text-5xl lg:text-display tracking-[-1.5px] sm:tracking-[-2px] lg:tracking-[-2.5px] leading-[1.1] font-medium mb-3 sm:mb-4">
-              Powered by Conversational AI
-            </h2>
+          
             
             {/* Subtitle */}
             <p className="font-sans font-normal text-gray-200 text-base sm:text-base md:text-lg lg:text-xl tracking-[-0.4px] sm:tracking-[-0.5px] lg:tracking-[-0.6px] leading-[1.35] mb-4 sm:mb-6 max-w-[600px]">
-              Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse. Reducing bracketing and returns.
+              Clarke lives on your site as a shopping assistant, guiding sizing decisions while shoppers browse. Reducing bracketing and size-basedreturns.
             </p>
             
             {/* Request Demo - CTA */}
