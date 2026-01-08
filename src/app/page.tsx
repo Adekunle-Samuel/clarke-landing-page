@@ -113,25 +113,6 @@ export default function Home() {
     try {
       // Add to Supabase waitlist
       await addToWaitlist({ name, email })
-      
-      // Send welcome email
-      try {
-        const emailResponse = await fetch('/api/send-waitlist-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, type: 'waitlist' }),
-        })
-
-        if (!emailResponse.ok) {
-          console.error('Failed to send email')
-          // Don't throw error here - the user is still added to waitlist
-        }
-      } catch (emailError) {
-        console.error('Email sending error:', emailError)
-        // Continue with success flow even if email fails
-      }
 
       setName('')
       setEmail('')
