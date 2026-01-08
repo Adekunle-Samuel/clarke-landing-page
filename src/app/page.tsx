@@ -186,7 +186,7 @@ export default function Home() {
         {/* Header Navigation */}
         <header className="relative z-30 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-20 pt-4 sm:pt-6 md:pt-8 lg:pt-[47px]">
           {/* Logo */}
-          <div className="h-[24px] w-[48px] sm:h-[48px] sm:w-[80px] md:h-[56px] md:w-[100px] relative">
+          <div className="h-[48px] w-[80px] sm:h-[48px] sm:w-[80px] md:h-[56px] md:w-[100px] relative">
             <Logo useNextImage={false} />
           </div>
           
