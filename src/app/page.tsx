@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 //import { supabase } from '@/lib/supabase'
-import { addToWaitlist, addPartner } from '@/lib/supabase-utils'
+import { addToWaitlist } from '@/lib/supabase-utils'
 import Script from 'next/script'
 //import SupabaseStatus from '@/components/SupabaseStatus'
 import Logo from '@/components/Logo'
+import { Input } from '@/components/ui/input'
 
 // Type definitions for FinisherHeader
 declare global {
@@ -44,12 +45,9 @@ export default function Home() {
   const [message, setMessage] = useState('')
   const [showForm, setShowForm] = useState(false)
   
-  // Partner form state
-  const [brandName, setBrandName] = useState('')
-  const [brandEmail, setBrandEmail] = useState('')
-  const [isPartnerSubmitting, setIsPartnerSubmitting] = useState(false)
-  const [partnerMessage, setPartnerMessage] = useState('')
-  const [showPartnerForm, setShowPartnerForm] = useState(false)
+  // Partner form state (reserved for future use)
+  // const [brandName, setBrandName] = useState('')
+  // const [brandEmail, setBrandEmail] = useState('')
 
   // Success popup state
   const [showSuccessPopup, setShowSuccessPopup] = useState(false)
@@ -147,45 +145,46 @@ export default function Home() {
     }
   }
 
-  const handlePartnerSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsPartnerSubmitting(true)
-    setPartnerMessage('')
-
-    try {
-      // Add to Supabase partners
-      await addPartner({ brand_name: brandName, email: brandEmail })
-      
-      // Send notification email
-      try {
-        const emailResponse = await fetch('/api/send-waitlist-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: brandName, email: brandEmail, type: 'partner' }),
-        })
-
-        if (!emailResponse.ok) {
-          console.error('Failed to send partner notification email')
-          // Don't throw error here - the partner is still added to database
-        }
-      } catch (emailError) {
-        console.error('Partner email sending error:', emailError)
-        // Continue with success flow even if email fails
-      }
-
-      setBrandName('')
-      setBrandEmail('')
-      setShowPartnerForm(false)
-      setShowPartnerSuccessPopup(true)
-    } catch (error) {
-      setPartnerMessage('Something went wrong. Please try again.')
-      console.error('Error:', error)
-    } finally {
-      setIsPartnerSubmitting(false)
-    }
-  }
+  // Partner form handler (reserved for future use)
+  // const handlePartnerSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setIsPartnerSubmitting(true)
+  //   setPartnerMessage('')
+  //
+  //   try {
+  //     // Add to Supabase partners
+  //     await addPartner({ brand_name: brandName, email: brandEmail })
+  //     
+  //     // Send notification email
+  //     try {
+  //       const emailResponse = await fetch('/api/send-waitlist-email', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ name: brandName, email: brandEmail, type: 'partner' }),
+  //       })
+  //
+  //       if (!emailResponse.ok) {
+  //         console.error('Failed to send partner notification email')
+  //         // Don't throw error here - the partner is still added to database
+  //       }
+  //     } catch (emailError) {
+  //       console.error('Partner email sending error:', emailError)
+  //       // Continue with success flow even if email fails
+  //     }
+  //
+  //     setBrandName('')
+  //     setBrandEmail('')
+  //     setShowPartnerForm(false)
+  //     setShowPartnerSuccessPopup(true)
+  //   } catch (error) {
+  //     setPartnerMessage('Something went wrong. Please try again.')
+  //     console.error('Error:', error)
+  //   } finally {
+  //     setIsPartnerSubmitting(false)
+  //   }
+  // }
 
   return (
     <>
@@ -285,34 +284,34 @@ export default function Home() {
               
               <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:gap-12">
                 {/* Form Header */}
-                <div className="text-center mb-4">
+                <div className="text-left">
                   <h2 className="font-serif text-white text-2xl lg:text-3xl tracking-[-0.5px] leading-[1.2] font-medium">
-                    Get Early Access
+                    Request Demo
                   </h2>
                 </div>
                 
                 <div className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-3">
-                    <input
+                  <div className="flex flex-col gap-2">
+                    <Input
                       id="name"
                       type="text"
-                      placeholder="First Name"
+                      placeholder="What is your Brand Name?"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
+                      className="bg-white/90 backdrop-blur-sm border-white/50 focus-visible:border-[#2ecc71] focus-visible:bg-white text-gray-900 placeholder:text-gray-500 font-sans text-base tracking-[-0.2px] py-3 px-4 shadow-sm"
                       required
                       aria-describedby="name-error"
                     />
                   </div>
 
-                  <div className="flex flex-col gap-3">
-                    <input
+                  <div className="flex flex-col gap-2">
+                    <Input
                       id="email"
                       type="email"
                       placeholder="Enter your email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-white/90 backdrop-blur-sm py-3 outline-none border-0 border border-white/50 focus:border-[#2ecc71] focus:bg-white rounded-lg font-sans text-gray-900 text-base tracking-[-0.2px] px-4 transition-all duration-300 placeholder:text-gray-500 placeholder:font-normal w-full shadow-sm"
+                      className="bg-white/90 backdrop-blur-sm border-white/50 focus-visible:border-[#2ecc71] focus-visible:bg-white text-gray-900 placeholder:text-gray-500 font-sans text-base tracking-[-0.2px] py-3 px-4 shadow-sm"
                       required
                       aria-describedby="email-error"
                     />
@@ -322,7 +321,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-white/30 backdrop-blur-sm border border-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
+                  className="relative overflow-hidden rounded-2xl px-8 lg:px-12 py-4 lg:py-5 font-sans font-medium text-white text-sm lg:text-base tracking-[-0.3px] leading-[1.3] bg-[#DBA7FC] backdrop-blur-sm border border-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2ecc71] focus:ring-offset-2 group hover:bg-white/40"
                 >
                   <span className="relative z-10">{isSubmitting ? 'Joining...' : 'Submit'}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
